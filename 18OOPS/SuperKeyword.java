@@ -21,4 +21,3 @@ class Horse extends Animal {
         super();
         System.out.println("horse construtor is called");
     }
-}
