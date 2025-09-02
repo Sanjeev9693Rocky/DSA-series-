@@ -194,6 +194,7 @@ public class Introduction {
 
 */
 
+/* 
 
 //lec-19.10, Qs. WAF to find the last occurence of an element in an array
 
@@ -214,6 +215,210 @@ public class Introduction {
     public static void main(String[] args) {
         int arr[] = {8, 3, 6, 9, 5, 10, 2, 5, 3};
         System.out.println(lastOccurence(arr, 5, 0));
+        
+    }
+}
+
+*/
+
+
+/* 
+
+//lec-19.11: Qs. print x^n
+
+public class Introduction {
+
+    public static int power(int x, int n) {
+        if(n == 0) {
+            return 1;
+        }
+
+        // int xnm1  = power(x, n-1);   
+        // int xn = x * xnm1;
+        // return xn;
+
+
+        return x * power(x, n-1);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(power(2, 10));
+    }
+}
+
+*/
+
+
+
+/* 
+//lec-19.12 : Qs. Print x^n in O(logn) by optimized
+
+public class Introduction {
+
+    public static int optimizePower(int a, int n ) {
+        if(n == 0) {
+            return 1;
+        }
+
+        //int halfPowerSqr = optimizePower(a, n/2) * optimizePower(a, n/2);
+        int halPower = optimizePower(a, n/2);
+        int halfPowerSqr = halPower * halPower;
+
+        //n is odd
+        if(n % 2 != 0) {
+            halfPowerSqr = a * halfPowerSqr;
+        }
+
+        return halfPowerSqr;
+    }
+
+    public static void main(String[] args) {
+        int a = 2;
+        int n = 10;
+        System.out.println(optimizePower(a, n));
+    }
+}
+
+*/
+
+
+/* 
+
+//lec-19.13,14: Qs. Tiling Problem
+
+public class Introduction {
+
+    public static int tilingProblem(int n) {    //2 X n (floor size)
+
+        if(n == 0 || n == 1) {
+            return 1;
+        }
+
+        //kaam
+        //vertical choice
+        int fnm1 = tilingProblem(n-1);
+
+        //horizantal choice
+        int fnm2 = tilingProblem(n-2); 
+
+        int totWays = fnm1 + fnm2;
+
+        return totWays;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(tilingProblem(3));
+        System.out.println(tilingProblem(2));
+        System.out.println(tilingProblem(4));
+    }
+
+*/
+
+
+/* 
+
+//lec-19.15 : Qs. Remove Duplicates in a String    "appnnacollege"
+
+public class Introduction {
+
+    public static void removeDuplicates(String str, int idx, StringBuilder newStr, boolean map[]) {
+        //base case
+        if(idx == str.length()) {
+            System.out.println(newStr);
+            return;
+        }
+
+        //kaam
+        char currChar = str.charAt(idx);
+        if(map[currChar-'a'] == true) {
+            //duplicate
+            removeDuplicates(str, idx+1, newStr, map);
+        } else {
+            map[currChar-'a'] = true;
+            removeDuplicates(str, idx+1, newStr.append(currChar), map);
+        }
+    }
+
+    public static void main(String[] args) {
+        String str = "appnnacollege";
+        removeDuplicates(str, 0, new StringBuilder(""), new boolean[26]);
+    }
+
+
+}
+
+*/
+
+/* 
+
+//lec-19.16: Qs.Friends Pairing Problem
+
+public class Introduction {
+
+    public static int friendsPairing(int n) {
+
+        //base 
+        if(n == 1 || n == 2) {
+            return n;
+        }
+
+        //choice
+        //single
+        int fnm1 = friendsPairing( n - 1);
+
+        //pair
+        int fnm2 = friendsPairing(n-2);
+        int pairWays = (n-1) * fnm2;
+
+        //totWays
+        int totWays = fnm1 + pairWays;
+        return totWays;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(friendsPairing(4));
+        System.out.println(friendsPairing(3));
+    }
+}
+
+*/
+
+
+
+//lec-19.17 : Binary Strings Problem Qs. Print all binary strings of size n without consecutive ones 
+
+public class Introduction {
+
+    public static void printBinStrings(int n, int lastPlace, StringBuilder str) {
+
+        //base
+        if(n == 0) {
+            System.out.println(str);
+            return;
+        }
+
+
+        //kaam
+        /* 
+        if(lastPlace == 0) {
+            //sit 0 on chair n
+            printBinStrings(n-1, 0,  str.append("0"));
+            printBinStrings(n-1, 1,  str.append("1"));
+
+        } else {
+            printBinStrings(n-1, 0, str.append("0"));
+        }
+        */
+
+        printBinStrings(n-1, 0, str.append("0"));
+        if(lastPlace == 0) {
+            printBinStrings(n-1, 1, str.append("1"));
+        }
+    }
+
+    public static void main(String[] args) {
+
+        printBinStrings(3, 0, new StringBuilder(""));
         
     }
 }
