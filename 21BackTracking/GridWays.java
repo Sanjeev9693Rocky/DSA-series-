@@ -23,3 +23,7 @@ public class GridWays {
     }
     
 }
+
+
+//time complexity:
+//space complexity:
