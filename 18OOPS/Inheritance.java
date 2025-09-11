@@ -108,7 +108,6 @@ public class Inheritance {
 
 
 
-
 //Base class (parents class)
 
 class Animal {
