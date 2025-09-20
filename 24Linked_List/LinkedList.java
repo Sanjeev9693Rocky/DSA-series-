@@ -368,6 +368,10 @@ public class LinkedList {
 */
 
 
+/* 
+
+
+//lec-24.10 : Search (Iterative)
 
 
 public class LinkedList {
@@ -474,6 +478,143 @@ public class LinkedList {
 
         System.out.println(ll.itrSearch(4));
         System.out.println(ll.itrSearch(10));
+        
+        
+        
+    }
+    
+}
+
+
+*/
+
+
+
+
+
+
+
+ 
+
+
+//lec-24.11 : Search (Recursive)
+// Search for a key in a Linked List. Return the position where it is found. If not found, return -1. Use Recursion.
+//Time and Space complexity : O(n) , Linear
+
+
+public class LinkedList {
+    public static class Node {
+        int data;
+        Node next;
+
+        public Node(int data){
+            this.data = data;
+            this.next = null;
+        }
+    }
+    public static Node head;
+    public static Node tail;
+    public static int size;
+
+    //adding the node
+    public void addFirst(int data) {
+        //step1 = create new node
+        Node newNode = new Node(data);
+        size++;
+
+        //if node is null
+        if(head == null) {
+            head = tail = newNode;
+            return;
+        }
+
+        //step2 - newNode next = head
+        newNode.next = head;   //link
+
+
+        //step3 - head = newNode
+        head = newNode;
+    }
+
+
+    //add last
+    public void addLast(int data) {
+        Node newNode = new Node(data);
+        size++;
+        if(head == null) {
+            head = tail = newNode;
+            return;
+        }
+        tail.next = newNode;
+        tail = newNode;
+    }
+
+
+    
+
+
+    //Print Linked List  -> TC : O(n)
+    public void print() {
+        //base code
+        if(head == null) {
+            System.out.println("Linked List is empty");
+            return;
+        }
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(temp.data+"->");
+            temp = temp.next;
+            
+        }
+        System.out.println("null");
+    }
+
+
+     
+
+
+    //Search(Recursive) : Time and Space complexity  : O(n)
+
+    public int helper(Node head, int key) {
+        if(head == null) {
+            return -1;
+        }
+
+        if(head.data == key) {
+            return 0;
+        }
+
+        int idx = helper(head.next, key);
+        if(idx == -1) {
+            return -1;
+        }
+
+        return idx+1;
+    }
+
+
+    public int recursiveSearch(int key) {
+        return helper(head, key);
+    }
+
+
+    
+
+
+    public static void main(String[] args) {
+        LinkedList ll = new LinkedList();    //ll -> object
+       
+        ll.addFirst(3);
+        ll.addFirst(2);
+        ll.addFirst(1);
+        ll.addLast(4);
+        ll.addLast(5);
+        
+
+        ll.print();
+
+        System.out.println(ll.recursiveSearch(3));
+        System.out.println(ll.recursiveSearch(10));
         
         
         
