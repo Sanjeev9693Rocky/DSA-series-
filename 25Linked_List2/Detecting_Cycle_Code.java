@@ -1,7 +1,7 @@
 //package 25Linked_List2;
 
 
-//lec-25.1 :  Floyd's CFA
+//lec-25.1 & 2 :  Floyd's CFA
 
 
 
