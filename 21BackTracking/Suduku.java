@@ -20,8 +20,8 @@ public class Suduku {
         }
 
         //grid
-        int sr = (row/3) * 3;      //sr= srtarting row
-        int sc = (col/3) * 3;      //sc = starting column
+        int sr = (row/3) * 3;      // sr = starting row
+        int sc = (col/3) * 3;      // sc = starting column
         //3x3 grid
         for(int i=sr; i<sr+3; i++) {
             for(int j=sc; j<sc+3; j++) {
